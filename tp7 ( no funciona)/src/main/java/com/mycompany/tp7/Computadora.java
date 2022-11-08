@@ -14,7 +14,18 @@ public class Computadora {
     
 private String marca;
 private String modelo;
-HashSet<ComponenteCPU> componenCPU; //= new HashSet<ComponenteCPU>();
+
+private List<HashSet> computadorass;
+
+    public List<HashSet> getComputadorass() {
+        return computadorass;
+    }
+
+    public void setComputadorass(List<HashSet> computadorass) {
+        this.computadorass = computadorass;
+    }
+
+HashSet<ComponenteCPU> componenCPU; 
 
     public String getMarca() {
         return marca;
@@ -46,7 +57,14 @@ HashSet<ComponenteCPU> componenCPU; //= new HashSet<ComponenteCPU>();
         }
         this.componenCPU.add(componente);
     }
+public void addcomputadorass (HashSet compu){
+if(this.computadorass == null){
+            this.computadorass = new ArrayList<HashSet>();
+        }
+        this.computadorass.add(compu);
 
+
+}
    
 
 }

@@ -15,31 +15,9 @@ public class CostoComputadora {
     static Computadora computadora = new Computadora();
     
     public static void main(String[]args){
-   Scanner sc= new Scanner(System.in);
-   computadora();
-        while(true){
-        computadoras();
-        
-        System.out.println("Desea cargar otra computadora?");
-            String condicionSalir = sc.next();
-
-            if (condicionSalir.equalsIgnoreCase("no")) {
-                break;
-            }
-        }
-        
-        
-       mostrar();
-        
-        
-    
-    }
-    
-    public static void computadoras(){
-    
     Scanner sc = new Scanner(System.in);
         
-        
+        computadora();
         while(true){
         componentes();
         
@@ -50,12 +28,15 @@ public class CostoComputadora {
                 break;
             }
         }
-        computadora.addcomputadorass(computadora.getComponenCPU());
-        computadora.componenCPU.clear();
-    
-    
+        
+        System.out.println(computadora.getComponenCPU().size());
+       mostrar();
+        
+        
     
     }
+    
+    
     public static void computadora(){
     Scanner sc = new Scanner(System.in);
         System.out.println("Ingrese la MARCA de la computadora");
@@ -98,36 +79,33 @@ public class CostoComputadora {
     
     public static void mostrar(){
     
-        System.out.println(computadora.getComputadorass().size());
-   
-        
-       for(HashSet computadoras:computadora.getComputadorass()){
-       
-       
-       
-            for (Iterator it = computadoras.iterator(); it.hasNext();) {
-                ComponenteCPU componente = it.next();
-                double total=0;
-                System.out.println("---------Computadora---------");
-                System.out.println("Marca: "+computadora.getMarca());
-                System.out.println("Modelo: "+computadora.getModelo());
-                System.out.println("---------Componentes---------");
-                System.out.println("Componente \t\tMarca \t\tCantidad\t\tPrecio X Unidad\t\t\tSubTotal");
-                System.out.println(completarConEspacios(componente.getComponente()) + "\t" +
-                        completarConEspacios(componente.getMarca()) + "\t" +
-                        completarConEspacios(Integer.toString(componente.getCantidad())) + "\t" +
-                        completarConEspacios(Double.toString(componente.getPrecio())) + "\t" +
-                        completarConEspacios(Double.toString(componente.getSubTotal())));
-                total += componente.getSubTotal();
-                System.out.println("\n \t\t \t\t \t\t \t\t COSTO TOTAL\t\t \t"+completarConEspacios(String.valueOf(total)));
-                if(total < 50000) {
-                    double ganancia = total * 0.4;
-                    System.out.println("\nEl precio sugerido de venta es: " + total + " + " + ganancia + " = " + (total + ganancia));
-                } else {
-                    double ganancia = total * 0.3;
-                    System.out.println("\nEl precio sugerido de venta es: " + total + " + " + ganancia + " = " + (total + ganancia));
-                }}
-    }
-    }
-}
+    
+        double total=0;
+        System.out.println("---------Computadora---------");
+       System.out.println("Marca: "+computadora.getMarca());
+       System.out.println("Modelo: "+computadora.getModelo());
+       System.out.println("---------Componentes---------");
+       System.out.println("Componente \t\tMarca \t\tCantidad\t\tPrecio X Unidad\t\t\tSubTotal");
+       for(ComponenteCPU componente : computadora.getComponenCPU()) { 
+            System.out.println(completarConEspacios(componente.getComponente()) + "\t" +
+                    completarConEspacios(componente.getMarca()) + "\t" + 
+                    completarConEspacios(Integer.toString(componente.getCantidad())) + "\t" +
+                    completarConEspacios(Double.toString(componente.getPrecio())) + "\t" +
+                    completarConEspacios(Double.toString(componente.getSubTotal())));
 
+            total += componente.getSubTotal();
+        }
+       System.out.println(" \t\t \t\t \t\t \t\t COSTO TOTAL\t\t \t"+completarConEspacios(String.valueOf(total)));
+        if(total < 50000) {
+            double ganancia = total * 0.4;
+            System.out.println("\nEl costo de la PC es de " + total + " + " + ganancia + " = " + (total + ganancia));
+        } else {
+            double ganancia = total * 0.3;
+            System.out.println("\nEl costo de la PC es de " + total + " + " + ganancia + " = " + (total + ganancia));
+        }
+    
+    }
+    
+    
+    
+}
